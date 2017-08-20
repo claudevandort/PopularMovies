@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.popularmovies.adapters.MovieAdapter;
 import com.example.popularmovies.tasks.TMDB;
@@ -24,6 +26,24 @@ public class MainActivity extends AppCompatActivity {
         mMovieAdapter = new MovieAdapter();
 
         TMDB.MoviesFetchAsyncTask task = new TMDB.MoviesFetchAsyncTask(this);
-        task.execute("popular");
+        task.execute(TMDB.POPULAR_PARAM);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        TMDB.MoviesFetchAsyncTask task = new TMDB.MoviesFetchAsyncTask(this);
+        switch (item.getItemId()){
+            case R.id.action_popular: task.execute(TMDB.POPULAR_PARAM);
+                break;
+            case R.id.action_top_rated: task.execute(TMDB.TOP_RATED_PARAM);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

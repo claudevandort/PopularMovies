@@ -34,8 +34,10 @@ import java.util.List;
  */
 
 public class TMDB {
-    private static String BASE_URL = "https://api.themoviedb.org/3/movie";
+    private static String API_BASE_URL = "https://api.themoviedb.org/3/movie";
     public static String IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
+    public static String POPULAR_PARAM = "popular";
+    public static String TOP_RATED_PARAM = "top_rated";
     private static String API_KEY = "api_key";
     private static String API_KEY_PARAM = BuildConfig.TMDB_API_KEY;
     private static ArrayList<Movie> mMovies = new ArrayList<>();
@@ -45,7 +47,7 @@ public class TMDB {
     }
 
     public static class MoviesFetchAsyncTask extends AsyncTask<String, Void, String>{
-        private final List<String> PERMITTED_PARAMS = Arrays.asList("popular", "top_rated");
+        private final List<String> PERMITTED_PARAMS = Arrays.asList(POPULAR_PARAM, TOP_RATED_PARAM);
         private Context mContext;
         private ProgressBar mProgressBar;
 
@@ -118,7 +120,7 @@ public class TMDB {
         }
 
         private Uri buildMoviesUri(String sortParam){
-            return Uri.parse(BASE_URL + "/" + sortParam).buildUpon()
+            return Uri.parse(API_BASE_URL + "/" + sortParam).buildUpon()
                     .appendQueryParameter(API_KEY, API_KEY_PARAM)
                     .build();
         }
