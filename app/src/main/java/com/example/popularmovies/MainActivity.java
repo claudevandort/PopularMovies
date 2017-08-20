@@ -1,13 +1,12 @@
 package com.example.popularmovies;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.popularmovies.adapters.MovieAdapter;
 import com.example.popularmovies.tasks.TMDB;
@@ -52,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.List
 
     @Override
     public void onListItemClickListener(int clickedItemIndex) {
-        Toast.makeText(this, TMDB.getMovies().get(clickedItemIndex).getOriginalTitle(), Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(MainActivity.this, MovieDetailsActivity.class);
+        intent.putExtra("MOVIE_ITEM_INDEX", clickedItemIndex);
+        startActivity(intent);
     }
 }

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/movie_title_text_view"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorAccentFont"
+        android:elevation="5dp"
+        android:padding="32dp"
+        android:textSize="32sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="12dp">
+        <ImageView
+            android:id="@+id/movie_poster_image_view"
+            android:adjustViewBounds="true"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"/>
+        <TextView
+            android:id="@+id/movie_detail_year_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:padding="6dp"
+            android:layout_toRightOf="@id/movie_poster_image_view"/>
+        <TextView
+            android:id="@+id/movie_vote_average_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:layout_toRightOf="@id/movie_poster_image_view"
+            android:layout_below="@+id/movie_detail_year_text_view"/>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/movie_overview_text_view"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

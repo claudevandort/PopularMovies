@@ -40,16 +40,6 @@ public class Movie {
         mVoteAverage = voteAverage;
     }
 
-    // Standard constructor
-    public Movie(long id, String originalTitle, String posterPath, String overview, float voteAverage, Date releaseDate){
-        mId = id;
-        mOriginalTitle = originalTitle;
-        mPosterPath = posterPath;
-        mOverview = overview;
-        mVoteAverage = voteAverage;
-        mReleaseDate = releaseDate;
-    }
-
     // GETTERS
     public long getId(){ return mId; }
 
