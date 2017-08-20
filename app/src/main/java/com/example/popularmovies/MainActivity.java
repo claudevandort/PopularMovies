@@ -4,13 +4,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.popularmovies.adapters.MovieAdapter;
 import com.example.popularmovies.tasks.TMDB;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MovieAdapter.ListItemClickListener{
+    private final String TAG = this.getClass().getSimpleName();
     public MovieAdapter mMovieAdapter;
     public RecyclerView mRecyclerView;
 
@@ -23,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
-        mMovieAdapter = new MovieAdapter();
+        mMovieAdapter = new MovieAdapter(this);
 
         TMDB.MoviesFetchAsyncTask task = new TMDB.MoviesFetchAsyncTask(this);
         task.execute(TMDB.POPULAR_PARAM);
@@ -45,5 +48,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onListItemClickListener(int clickedItemIndex) {
+        Toast.makeText(this, TMDB.getMovies().get(clickedItemIndex).getOriginalTitle(), Toast.LENGTH_LONG).show();
     }
 }

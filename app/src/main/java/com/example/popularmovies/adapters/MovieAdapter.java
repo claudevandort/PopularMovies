@@ -17,6 +17,11 @@ import com.squareup.picasso.Picasso;
  */
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder>{
+    private final ListItemClickListener mListItemClickListener;
+
+    public MovieAdapter(ListItemClickListener listItemClickListener){
+        mListItemClickListener = listItemClickListener;
+    }
 
     @Override
     public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -36,7 +41,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         return TMDB.getMovies().size();
     }
 
-    class MovieViewHolder extends RecyclerView.ViewHolder{
+    public interface ListItemClickListener{
+        void onListItemClickListener(int clickedItemIndex);
+    }
+
+    class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView mMoviePosterImageView;
         Context mContext;
 
@@ -46,6 +55,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
             mMoviePosterImageView = (ImageView) itemView.findViewById(R.id.movie_poster_image_view);
             mContext = itemView.getContext();
+            itemView.setOnClickListener(this);
         }
 
         void bind(int listIndex){
@@ -55,6 +65,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             Picasso.with(mContext)
                     .load(posterUrl)
                     .into(mMoviePosterImageView);
+        }
+
+        @Override
+        public void onClick(View v) {
+            mListItemClickListener.onListItemClickListener(getAdapterPosition());
         }
     }
 }
