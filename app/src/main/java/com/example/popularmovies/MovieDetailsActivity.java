@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -50,7 +49,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 .load(TMDB.IMAGE_BASE_URL + mMovie.getPosterPath())
                 .into(mPosterImageView);
         mYearTextView.setText(String.valueOf(1900 + mMovie.getReleaseDate().getYear()));
-        mVoteAverageTextView.setText(mMovie.getVoteAverage() + "/10");
+        mVoteAverageTextView.setText(String.format("%.1f/10", mMovie.getVoteAverage()));
         mOverviewTextView.setText(mMovie.getOverview());
     }
 }
