@@ -83,7 +83,7 @@ public class TMDB {
 
             mProgressBar.setVisibility(View.GONE);
             if(mMovies.size() == 0)
-                Toast.makeText(mContext, "Couldn't get any movie :(", Toast.LENGTH_LONG).show();
+                Toast.makeText(mContext, R.string.movies_not_found, Toast.LENGTH_LONG).show();
         }
 
         private void parseAndSave(String stringResult){
