@@ -16,7 +16,6 @@ import com.squareup.picasso.Picasso;
  */
 
 public class MovieDetailsActivity extends AppCompatActivity {
-    private final String TAG = this.getClass().getSimpleName();
     private TextView mTitleTextView;
     private ImageView mPosterImageView;
     private TextView mYearTextView;
@@ -47,6 +46,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
         mTitleTextView.setText(mMovie.getOriginalTitle());
         Picasso.with(this)
                 .load(TMDB.IMAGE_BASE_URL + mMovie.getPosterPath())
+                .placeholder(R.drawable.ic_movie_creation_black_24dp)
+                .error(R.drawable.ic_error_outline_black_24dp)
                 .into(mPosterImageView);
         mYearTextView.setText(String.valueOf(1900 + mMovie.getReleaseDate().getYear()));
         mVoteAverageTextView.setText(String.format("%.1f/10", mMovie.getVoteAverage()));

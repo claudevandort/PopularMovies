@@ -49,7 +49,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         ImageView mMoviePosterImageView;
         Context mContext;
 
-
         public MovieViewHolder(View itemView) {
             super(itemView);
 
@@ -64,6 +63,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             String posterUrl = TMDB.IMAGE_BASE_URL + movie.getPosterPath();
             Picasso.with(mContext)
                     .load(posterUrl)
+                    .placeholder(R.drawable.ic_movie_creation_black_24dp)
+                    .error(R.drawable.ic_error_outline_black_24dp)
                     .into(mMoviePosterImageView);
         }
 
